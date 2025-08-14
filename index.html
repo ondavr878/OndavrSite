@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yandex — IT kompaniya</title>
+  <meta name="description" content="Yandex — web va mobil ilovalar, backend (Ktor/PostgreSQL), DevOps va AI integratsiyalariga ixtisoslashgan IT kompaniya." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070b16; --surface:#0d1224; --muted:#9aa3b2; --txt:#e8ecf1;
+      --brand:#46c2b2; --brand2:#7cc8ff; --accent:#a78bfa; --warn:#ffb020;
+      --ring:0 0 0 2px rgba(124,200,255,.35);
+      --mx:50%; --my:50%;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--txt); background:var(--bg)}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:1180px; margin:0 auto; padding:0 20px}
+
+    body::before{content:""; position:fixed; inset:-20% -20% auto -20%; height:120vh; z-index:-2; background:conic-gradient(from 180deg at 50% 50%, rgba(70,194,178,.2), rgba(124,200,255,.15), rgba(167,139,250,.12), rgba(70,194,178,.2)); filter:blur(70px); animation:spin 36s linear infinite}
+    body::after{content:""; position:fixed; inset:0; z-index:-1; background:radial-gradient(600px 600px at var(--mx) var(--my), rgba(124,200,255,.12), transparent 60%); pointer-events:none; transition:background-position .2s ease}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    header{position:sticky; top:0; z-index:40; border-bottom:1px solid rgba(255,255,255,.06); backdrop-filter:saturate(180%) blur(10px); background:rgba(7,11,22,.55)}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:70px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px}
+    .logo{inline-size:38px; block-size:38px; border-radius:12px; background:linear-gradient(135deg,var(--brand),var(--brand2)); display:grid; place-items:center; font-weight:900; color:#08111e; box-shadow:0 12px 30px rgba(124,200,255,.22)}
+    .menu{display:flex; gap:22px}
+    .menu a{opacity:.9}
+    .menu a:hover{opacity:1}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:14px; background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#08111e; font-weight:800; border:1px solid rgba(255,255,255,.08); box-shadow:0 14px 40px rgba(124,200,255,.25); transform:translateZ(0)}
+    .btn.ghost{background:transparent; color:var(--txt); border:1px solid rgba(255,255,255,.16); box-shadow:none}
+    .btn.mag{transition:transform .15s ease, box-shadow .15s ease}
+    .btn.mag:hover{transform:translateY(-2px)}
+
+    .mob-toggle{display:none}
+
+    .hero{padding:90px 0 40px; position:relative; overflow:hidden}
+    .hero-wrap{display:grid; grid-template-columns:1.15fr 1fr; gap:28px; align-items:center}
+    .badge{display:inline-flex; align-items:center; gap:8px; color:#0b1020; background:linear-gradient(135deg,var(--brand),var(--brand2)); padding:7px 12px; border-radius:999px; font-weight:800; font-size:12px}
+    .headline{font-size:54px; line-height:1.05; margin:12px 0 14px; letter-spacing:-.6px}
+    .lead{color:var(--muted); font-size:18px; margin:0 0 22px}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+
+    .hero-visual{position:relative}
+    .glass{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.09); border-radius:22px; padding:18px; box-shadow:0 20px 60px rgba(0,0,0,.35)}
+    .mock{aspect-ratio:16/10; border-radius:18px; background:radial-gradient(950px 600px at 0% 0%, rgba(124,200,255,.28), transparent 40%), linear-gradient(180deg,#0f1630,#0b1020); border:1px solid rgba(255,255,255,.08); position:relative; overflow:hidden}
+
+    .blob, .ring, .spark{position:absolute; pointer-events:none}
+    .blob{filter:blur(40px); opacity:.55}
+    .blob.b1{inset:auto -60px 10% auto; width:260px; height:260px; background:radial-gradient(circle at 30% 30%, rgba(70,194,178,.9), transparent 60%); animation:float 12s ease-in-out infinite}
+    .blob.b2{inset:10% auto auto -60px; width:220px; height:220px; background:radial-gradient(circle at 60% 40%, rgba(124,200,255,.9), transparent 60%); animation:float 14s ease-in-out -2s infinite}
+    .blob.b3{inset:auto auto -50px 30%; width:200px; height:200px; background:radial-gradient(circle at 50% 50%, rgba(167,139,250,.85), transparent 60%); animation:float 11s ease-in-out -4s infinite}
+    @keyframes float{50%{transform:translateY(-18px) translateX(8px) scale(1.04)} to{transform:translateY(0)}}
+    .ring{inset:10% 10% auto auto; width:120px; height:120px; border-radius:50%; border:2px dashed rgba(255,255,255,.25); animation:spin 18s linear infinite}
+    .spark{inset:auto 10% 14% auto; width:8px; height:8px; border-radius:50%; background:#fff; box-shadow:0 0 20px rgba(255,255,255,.6); animation:spark 3s ease-in-out infinite}
+
+    section{padding:56px 0}
+    h2{margin:0 0 8px; font-size:28px}
+    p.section-lead{color:var(--muted); margin:0 0 24px}
+
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.22); transform-style:preserve-3d; will-change:transform}
+    .card.tilt:hover{transform:perspective(900px) rotateX(3deg) rotateY(-3deg)}
+    .feat{display:flex; gap:14px}
+    .icon{inline-size:42px; block-size:42px; border-radius:12px; display:grid; place-items:center; background:rgba(124,200,255,.1); border:1px solid rgba(124,200,255,.25)}
+
+    .pricing{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .price-card{padding:22px}
+    .price{font-size:36px; font-weight:900}
+
+    .carousel{display:grid; grid-auto-flow:column; grid-auto-columns:80%; gap:18px; overflow:auto; scroll-snap-type:x mandatory; padding-bottom:6px}
+    .carousel > *{scroll-snap-align:start}
+
+    .contact{display:grid; grid-template-columns:1.2fr 1fr; gap:18px}
+    input, textarea{width:100%; padding:12px 14px; border-radius:12px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14); color:var(--txt)}
+    input:focus, textarea:focus{outline:none; box-shadow:var(--ring)}
+
+    footer{padding:28px 0; color:var(--muted); border-top:1px solid rgba(255,255,255,.08)}
+
+    @media (max-width: 980px){
+      .hero-wrap, .contact{grid-template-columns:1fr}
+      .menu{display:none}
+      .mob-toggle{display:inline-flex}
+      .headline{font-size:40px}
+      .carousel{grid-auto-columns:92%}
+      .grid-3, .pricing{grid-template-columns:1fr}
+    }
+
+    .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.in{opacity:1; transform:none}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Yandex bosh sahifa"><span class="logo">Y</span> <span>Yandex</span></a>
+      <nav class="menu" aria-label="Asosiy menyu">
+        <a href="#xizmat">Xizmatlar</a>
+        <a href="#afzallik">Afzalliklar</a>
+        <a href="#portfolio">Portfel</a>
+        <a href="#narx">Narxlar</a>
+        <a href="#aloqa">Aloqa</a>
+      </nav>
+      <button class="btn ghost mob-toggle mag" id="menuBtn">Menyu</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <div class="hero-wrap">
+        <div>
+          <span class="badge">Yandex • 2025</span>
+          <h1 class="headline">Murakkab animatsiyalarga boy, <span style="background:linear-gradient(135deg,var(--brand),var(--brand2)); -webkit-background-clip:text; background-clip:text; color:transparent">premium veb tajriba</span></h1>
+          <p class="lead">Custom software: mobil (Android/iOS/KMM), veb va backend (Ktor/PostgreSQL). DevOps (Docker, CI/CD) va AI integratsiyalar bilan to‘liq sikl.</p>
+          <div class="cta">
+            <a class="btn mag" href="#aloqa">Loyihani boshlash</a>
+            <a class="btn ghost mag" href="#afzallik">Afzalliklar</a>
+          </div>
+        </div>
+        <div class="hero-visual glass reveal">
+          <div class="mock" id="heroMock">
+            <div class="blob b1"></div>
+            <div class="blob b2"></div>
+            <div class="blob b3"></div>
+            <div class="ring"></div>
+            <div class="spark"></div>
+            <svg width="100%" height="100%" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice" style="position:absolute; inset:0">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#46c2b2"/><stop offset="1" stop-color="#7cc8ff"/></linearGradient>
+              </defs>
+              <rect x="26" y="24" width="748" height="56" rx="12" fill="rgba(255,255,255,.06)" />
+              <rect x="60" y="120" width="360" height="34" rx="8" fill="url(#g1)"/>
+              <rect x="60" y="170" width="520" height="16" rx="6" fill="rgba(255,255,255,.2)"/>
+              <rect x="60" y="200" width="480" height="16" rx="6" fill="rgba(255,255,255,.12)"/>
+              <rect x="60" y="240" width="680" height="220" rx="14" fill="rgba(124,200,255,.12)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="afzallik" class="container">
+      <h2>Bizning afzalliklar</h2>
+      <p class="section-lead">Sifat, xavfsizlik va tezlik — Yandex standartlari.</p>
+      <div class="grid-3">
+        <div class="card tilt reveal"><div class="feat"><div class="icon">⚡</div><div><h3>Tezlik</h3><p class="muted">Lighthouse 90+ yo‘nalishlari, kod-splitting, lazy load va rasm optimizatsiyasi.</p></div></div></div>
+        <div class="card tilt reveal"><div class="feat"><div class="icon">🔒</div><div><h3>Xavfsizlik</h3><p class="muted">HTTPS, CSP, OWASP tavsiyalari, token va rate-limit strategiyalari.</p></div></div></div>
+        <div class="card tilt reveal"><div class="feat"><div class="icon">🎨</div><div><h3>UI/UX</h3><p class="muted">Murakkab animatsiyalar, micro-interactions va accessibility bilan.</p></div></div></div>
+      </div>
+    </section>
+
+    <section id="xizmat" class="container">
+      <h2>Xizmatlar</h2>
+      <p class="section-lead">End-to-end ishlab chiqish va qo‘llab-quvvatlash.</p>
+      <div class="grid-3">
+        <div class="card tilt reveal"><h3>Mobil ilovalar</h3><p class="muted">Android/iOS uchun native va KMM (Compose/SwiftUI).</p></div>
+        <div class="card tilt reveal"><h3>Veb ilovalar</h3><p class="muted">SPA/SSR, admin panel va dizayn sistemalar.</p></div>
+        <div class="card tilt reveal"><h3>Backend & DevOps</h3><p class="muted">Ktor, PostgreSQL, Docker, CI/CD, monitoring.</p></div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="container">
+      <h2>Portfel</h2>
+      <p class="section-lead">Yaqinda yakunlangan ishlarimizdan namunalar.</p>
+      <div class="carousel" id="carousel">
+        <div class="card reveal"><img src="https://picsum.photos/seed/yandex1/1200/750" alt="Portfolio item"/><div style="padding-top:10px" class="muted">Fintech mobil ilova — KMM</div></div>
+        <div class="card reveal"><img src="https://picsum.photos/seed/yandex2/1200/750" alt="Portfolio item"/><div style="padding-top:10px" class="muted">E-commerce admin — React</div></div>
+        <div class="card reveal"><img src="https://picsum.photos/seed/yandex3/1200/750" alt="Portfolio item"/><div style="padding-top:10px" class="muted">CRM/Backoffice — Ktor</div></div>
+      </div>
+    </section>
+
+    <section id="narx" class="container">
+      <h2>Narxlar</h2>
+      <p class="section-lead">Loyiha murakkabligiga qarab moslashuvchan takliflar.</p>
+      <div class="pricing">
+        <div class="card price-card tilt reveal"><h3>MVP</h3><div class="price">$199+</div><p class="muted">Landing / prototip. 1–2 hafta.</p><a class="btn mag" href="#aloqa">Buyurtma</a></div>
+        <div class="card price-card tilt reveal" style="border:1px solid rgba(124,200,255,.5)"><h3>Business</h3><div class="price">$499+</div><p class="muted">Ko‘p sahifa, SEO, CI/CD.</p><a class="btn mag" href="#aloqa">Buyurtma</a></div>
+        <div class="card price-card tilt reveal"><h3>Enterprise</h3><div class="price">$—</div><p class="muted">Arxitektura, SLA, skeyllanish.</p><a class="btn mag" href="#aloqa">Bog‘lanish</a></div>
+      </div>
+    </section>
+
+    <section id="aloqa" class="container">
+      <h2>Aloqa</h2>
+      <p class="section-lead">So‘rovingizni qoldiring — tez orada bog‘lanamiz.</p>
+      <div class="contact">
+        <form class="card glass reveal" id="contactForm" onsubmit="return submitForm(event)">
+          <label>Ism familiya
+            <input required name="name" placeholder="Ismingiz" />
+          </label>
+          <div style="height:10px"></div>
+          <label>Telefon
+            <input required name="phone" placeholder="99 123 45 67" />
+          </label>
+          <div style="height:10px"></div>
+          <label>Izoh
+            <textarea name="msg" rows="5" placeholder="Loyihangiz haqida qisqacha"></textarea>
+          </label>
+          <div style="height:14px"></div>
+          <button class="btn mag" type="submit">Yuborish</button>
+          <p id="formStatus" class="muted" role="status" aria-live="polite" style="margin-top:10px"></p>
+        </form>
+        <div class="card glass reveal">
+          <h3>Manzil & bog‘lanish</h3>
+          <p class="muted">Toshkent, O‘zbekiston</p>
+          <p class="muted">E-pochta: hello@yandex.local</p>
+          <p class="muted">Telegram: @yandex</p>
+          <div style="height:10px"></div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap">
+            <span class="btn ghost">Kotlin</span>
+            <span class="btn ghost">SwiftUI</span>
+            <span class="btn ghost">Ktor</span>
+            <span class="btn ghost">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap">
+      <span>© <span id="year"></span> Yandex</span>
+      <div style="display:flex; gap:14px">
+        <a href="#top">Bosh sahifa</a>
+        <a href="#xizmat">Xizmatlar</a>
+        <a href="#aloqa">Aloqa</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    window.addEventListener('pointermove', (e)=>{
+      document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+      document.documentElement.style.setProperty('--my', e.clientY + 'px');
+    });
+    const btn = document.getElementById('menuBtn');
+    const menu = document.querySelector('.menu');
+    btn?.addEventListener('click', () => {
+      const show = getComputedStyle(menu).display !== 'none';
+      menu.style.display = show ? 'none' : 'flex';
+      menu.style.flexDirection = 'column';
+      menu.style.gap = '12px';
+      menu.style.padding = '12px 0';
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const el = document.querySelector(id);
+        if (el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      })
+    });
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } })
+    }, {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    document.querySelectorAll('.mag').forEach(b=>{
+      b.addEventListener('mousemove', e=>{
+        const r = b.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width/2;
+        const y = e.clientY - r.top - r.height/2;
+        b.style.transform = `translate(${x*.06}px, ${y*.06}px)`;
+      });
+      b.addEventListener('mouseleave', ()=> b.style.transform='translate(0,0)');
+    });
+    function attachTilt(el){
+      el.addEventListener('mousemove', e=>{
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left)/r.width - .5;
+        const py = (e.clientY - r.top)/r.height - .5;
+        el.style.transform = `perspective(900px) rotateX(${ -py*6 }deg) rotateY(${ px*6 }deg)`;
+      });
+      el.addEventListener('mouseleave', ()=> el.style.transform='');
+    }
+    document.querySelectorAll('.card.tilt').forEach(attachTilt);
+    const heroMock = document.getElementById('heroMock');
+    if(heroMock){ attachTilt(heroMock.parentElement); }
+    const carousel = document.getElementById('carousel');
+    let auto;
+    function start(){ auto = setInterval(()=>{ carousel.scrollBy({left: carousel.clientWidth*0.8, behavior:'smooth'}); if(carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth-4){ carousel.scrollTo({left:0, behavior:'smooth'}); } }, 3000); }
+    function stop(){ clearInterval(auto); }
+    if(carousel){ start(); carousel.addEventListener('mouseenter', stop); carousel.addEventListener('mouseleave', start); }
+    function submitForm(e){
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      status.textContent = 'Yuborilmoqda...';
+      setTimeout(()=>{
+        status.textContent = 'Rahmat! So‘rovingiz qabul qilindi. Tez orada bog‘lanamiz.';
+        e.target.reset();
+      }, 800);
+      return false;
+    }
+  </script>
+</body>
+</html>
